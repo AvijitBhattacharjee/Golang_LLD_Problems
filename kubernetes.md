@@ -594,3 +594,14 @@ Traffic resumes
 18. Explain the Kubernetes Reconciliation Loop.
 19. Explain CRD and Operator.
 20. How do you troubleshoot a production Kubernetes issue?
+
+
+what is init, sidecar and main container in a pod?
+In a Kubernetes Pod, there are different types of containers that serve specific purposes:
+1. **Init Container**: 
+   - Init containers are specialized containers that run before the main application containers in a Pod. They are used to perform initialization tasks, such as setting up the environment, checking dependencies, or preparing data before the main application starts. Init containers run sequentially and must complete successfully before the main containers are started.
+2. **Sidecar Container**:
+   - Sidecar containers are auxiliary containers that run alongside the main application container(s) in a Pod. They provide additional functionality or support to the main application, such as logging, monitoring, or proxying. Sidecar containers share the same network namespace and storage volumes as the main container, allowing them to interact closely with the main application.
+3. **Main Container**:
+   - The main container is the primary application container that runs the core functionality of the Pod. It is the container that performs the main tasks or services that the Pod is designed to provide. The main container is typically the focus of the Pod's purpose, while init and sidecar containers support its operation.    
+

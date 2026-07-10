@@ -1,0 +1,7 @@
+1. what is telemetry?
+Telemetry is the process of collecting data from remote or inaccessible sources and transmitting it to receiving equipment for monitoring, analysis, and decision-making. It is commonly used in various fields such as aerospace, automotive, healthcare, and environmental monitoring to track performance, gather information, and ensure systems are functioning correctly. Telemetry systems typically involve sensors, data transmission methods (like radio or satellite), and data processing tools to interpret the collected information.
+
+2. difference between latency, throughput, and bandwidth?
+- Latency: Latency refers to the time it takes for data to travel from the source to the destination. It is usually measured in milliseconds (ms) and can be affected by factors such as network congestion, distance, and processing delays.
+- Throughput: Throughput is the actual rate at which data is successfully transmitted over a network or communication channel. It is typically measured in bits per second (bps) or bytes per second (Bps) and can be influenced by factors like network capacity, protocol efficiency, and error rates.
+- Bandwidth: Bandwidth is the maximum amount of data that can be transmitted over a network or communication channel in a given amount of time. It is usually measured in bits per second (bps) or bytes per second (Bps) and represents the capacity of the network. While bandwidth indicates potential data transfer rates, it does not guarantee that data will be transmitted at that rate due to factors like latency and throughput.
