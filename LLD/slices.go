@@ -278,3 +278,84 @@ errors.As is useful when you want to extract additional information from an erro
 
 
 
+==================
+
+what is GMP?
+G = Goroutine
+M = Machine (OS Thread)
+P = Processor (Logical Processor)
+
+              CPU Core 1
+
+        +----------------+
+        |       M1       |
+        +----------------+
+                |
+                |
+              owns
+                |
+        +----------------+
+        |       P1       |
+        +----------------+
+           |    |    |
+           G1   G2   G3
+
+
+              CPU Core 2
+
+        +----------------+
+        |       M2       |
+        +----------------+
+                |
+        +----------------+
+        |       P2       |
+        +----------------+
+          G4 G5 G6
+
+
+number of P controlled by runtime.GOMAXPROCS()
+Every P has - cache, load balancer, queue 
+
+Work Stealing 
+suppose P1 has g1,g2,g3,g4 and P2 has 0, then for balancing g2 will steal few g from P1
+
+Goroutine Lifecycle
+new -> runnable -> running -> waiting/blocked -> dead
+
+blocked go routine - does not consume CPU time but in consumes memory, stack, heap, etc.
+
+variable x will go to stack or heap based on escape analysis, if it escapes then it will go to heap otherwise stack
+for example, if a variable is returned from a function or referenced by a goroutine, it will escape to the heap. 
+If it is only used within the function and does not escape, it will be allocated on the stack.	
+from heap it has to be garbage collected, from stack it will be automatically cleaned up when the function returns.
+
+why stack preferred over heap?
+1. Stack allocation is faster than heap allocation because it involves simple pointer arithmetic, while heap allocation requires more complex memory management.
+2. Stack memory is automatically managed, while heap memory requires manual management and garbage collection.
+3. Stack memory has better cache locality, which can improve performance.
+
+what triggers GC?
+Heap Growth: When the heap grows beyond a certain threshold, the garbage collector is triggered to reclaim memory.
+GOGC - Environment variable that controls the garbage collection target percentage.
+
+why native maps are unsafe for concurrent writes?
+native maps in Go are not safe for concurrent writes because they are not designed to handle simultaneous write operations from multiple goroutines. If two or more goroutines attempt to write to the same map at the same time, it can lead to race conditions,
+data corruption, or program crashes. The internal data structures of maps are not protected by locks, so concurrent writes can interfere with each other and cause unexpected behavior.
+
+m map[int]int and sync.Map are different in that m is a native Go map, which is not safe for concurrent writes, 
+while sync.Map is a concurrent map implementation provided by the Go standard library that is designed to be safe for concurrent access. 
+sync.Map uses internal locking mechanisms to ensure that multiple goroutines can safely read from and write to the map 
+without causing race conditions or data corruption.
+
+go routines shared memory but thread s have their own memory space, so they do not share memory by default.
+
+commands - 
+1. race condition - go race -race
+2. deadlock - go run -race
+3. memory leak, CPU profiling, blocking profiling, heap profiling, goroutine leakage, mutex profiling, channel profiling - go tool pprof
+4. escape analysis - go build -gcflags="-m"
+
+
+
+
+

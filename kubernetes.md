@@ -488,6 +488,27 @@ kubectl top node
 
 ---
 
+what is role, clusterrole, rolebinding and clusterrolebinding in kubernetes?
+In Kubernetes, Role, ClusterRole, RoleBinding, and ClusterRoleBinding are components of the Role-Based Access Control (RBAC) system that manage permissions for users and service accounts. Here's a brief explanation of each:
+
+**Role**:
+- Defines a set of permissions within a specific namespace.
+- Can only grant access to resources within that namespace.
+
+**ClusterRole**:
+- Similar to Role but operates at the cluster level.
+- Can grant access to resources across all namespaces.
+
+**RoleBinding**:
+- Binds a Role (or ClusterRole) to a user or group within a specific namespace.
+- Grants the permissions defined in the Role to the specified user or group.
+
+**ClusterRoleBinding**:
+- Binds a ClusterRole to a user or group at the cluster level.
+- Grants the permissions defined in the ClusterRole to the specified user or group.
+
+-------
+
 ## Autoscaling
 
 - HPA
